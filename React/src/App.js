@@ -16,7 +16,7 @@ const HighlightText = styled(Typography)({
   fontWeight: 'bold',
 });
 
-export default function App() {
+function App() {
   const [inputs, setInputs] = useState({
     targetAudience: '',
     prompt: '',
@@ -93,3 +93,5 @@ export default function App() {
     </Box>
   );
 }
+
+export default App;
