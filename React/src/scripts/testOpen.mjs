@@ -6,7 +6,7 @@
 //     const prompt = `Create content for an ALS Awareness Campaign
 //     to Raise awareness and support for ALS research and patient care for the target audience ${targetAudience}
 //     with the objective ${objective} and the prompt ${ppt}`;
-//     const apiKey = 'APIKEY';
+//     const apiKey = '';
   
 //     try {
 //       const response = await fetch(OPENAI_URL, {
@@ -44,9 +44,9 @@
 
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey: 'APIKEY'});
+const openai = new OpenAI({ apiKey: ''});
 
-async function Openai([targetAudience, ppt, objective]) {
+export async function Openai([targetAudience, ppt, objective]) {
   const completion = await openai.chat.completions.create({
     messages: [{"role": "system", "content": "You are creating content for an ALS Awareness Campaign to Raise awareness and support for ALS research and patient care"},
         {"role": "user", "content": "Who won the world series in 2020?"},

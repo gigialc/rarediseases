@@ -2,7 +2,8 @@ import React, { useState } from 'react';
 import { Box, Container, Typography, Card, CardContent, TextField, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CustomAppBar from './appbar';
-import db from './firebase-config'; // Assuming you have firebase-config set up
+import db from './firebase-config'; 
+import { Openai } from '/Users/joseramos/Documents/GitHub/rarediseases/React/src/scripts/testOpen.mjs';// Assuming you have firebase-config set up
 
 const CustomButton = styled(Button)({
   backgroundColor: '#4DB5FF',
@@ -34,7 +35,7 @@ function App() {
     event.preventDefault();
     // Here you would call your content generation API
     // This is a placeholder for the logic you would use to generate content
-    const content = `Content for ${inputs.targetAudience} regarding ${inputs.prompt} with the objective of ${inputs.objective}`;
+    const content = await Openai(inputs.targetAudience, inputs.prompt, inputs.objective);
     setGeneratedContent(content);
   }
 
