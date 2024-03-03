@@ -1,75 +1,95 @@
-import React from 'react';
-import { Box, Container, Typography, Card, CardContent, Button } from '@mui/material';
+import React, { useState } from 'react';
+import { Box, Container, Typography, Card, CardContent, TextField, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { useNavigate } from 'react-router-dom'; // Import useNavigate from react-router-dom
-import { addDoc, collection } from 'firebase/firestore';
-import db from './firebase-config'; // Import the Firestore instance
 import CustomAppBar from './appbar';
+import db from './firebase-config'; // Assuming you have firebase-config set up
 
-// Import the useState and useEffect hooks for calling apis
-import {useState, useEffect} from 'react';
-import api from './api';
-
-// Custom Components
 const CustomButton = styled(Button)({
-  backgroundColor: '#b666d2',
+  backgroundColor: '#4DB5FF',
   '&:hover': {
-    backgroundColor: '#a8003b',
+    backgroundColor: '#007BFF',
   },
 });
 
 const HighlightText = styled(Typography)({
-  color: '#b666d2',
+  color: '#4DB5FF',
   fontWeight: 'bold',
 });
 
-export default function App() {
-  const navigate = useNavigate(); // useNavigate hook to handle navigation
+export default function ALSAwarenessApp() {
+  const [inputs, setInputs] = useState({
+    targetAudience: '',
+    prompt: '',
+    objective: ''
+  });
+  const [generatedContent, setGeneratedContent] = useState('');
 
-  const handleClick = () => {
-    navigate('/demo'); // Use navigate with the route as argument
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInputs(values => ({...values, [name]: value}))
+  }
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    // Here you would call your content generation API
+    // This is a placeholder for the logic you would use to generate content
+    const content = `Content for ${inputs.targetAudience} regarding ${inputs.prompt} with the objective of ${inputs.objective}`;
+    setGeneratedContent(content);
   }
 
   return (
-    <Box sx={{ backgroundColor: '#F8F5F7', py: 0 }}>
-    <CustomAppBar />
-    <Container maxWidth="md">
-      <Typography variant="h3" component="h1" sx={{ textAlign: 'center', mt: 5, mb: 2, color: '#84003B', fontWeight: "bold" }}>
-        Older Sister
-      </Typography>
-      <Typography variant="h6" sx={{ textAlign: 'center', my: 2 }}>
-        Empowering Women Through Personalized Reproductive Health Education
-      </Typography>
-      <Card elevation={3} sx={{ my: 4, p: 3 }}>
-        <CardContent>
-          <HighlightText variant="h5" component="h2" sx={{ textAlign: 'center', mb: 2, color:"#84003B" }}>
-            Personalized Women's Health Education API
-          </HighlightText>
-          <Typography variant="body1" sx={{ textAlign: 'center', mb: 2 }}>
-            For Period Tracking, Birth Control, and Reproductive Health Apps.
-          </Typography>
-          <Typography variant="body1" sx={{ textAlign: 'center' }}>
-            At Older Sister, we leverage AI to provide personalized, accurate, and accessible health education, tailored to women's unique needs worldwide.
-          </Typography>
-        </CardContent>
-      </Card>
-      {/* <HighlightText variant="h5" component="h2" sx={{ textAlign: 'center', mb: 2 }}>
-        How It Works
-      </HighlightText> */}
-      {/* <Typography variant="body1" sx={{ textAlign: 'center', mb: 4 }}>
-        Request content → Curate from medical journals → Set brand tone → Deliver tailored information → Review and integrate
-      </Typography> */}
-      <CustomButton variant="contained" onClick={handleClick} sx={{ display: 'block', mx: 'auto', mb: 5, backgroundColor: "#84003B" }}>
-        Try
-      </CustomButton>
-      <Typography variant="h5" component="h2" id="contact-section" sx={{ textAlign: 'center', mb: 2,paddingTop: 18 }}>
-        Contact
-      </Typography>
-      <Typography variant="body1" sx={{ textAlign: 'center', mb: 2, paddingTop:1 , paddingBottom: 5}}>
-        Georgina Alcaraz | <a href="mailto:galcaraz@bu.edu" style={{ color: 'inherit', textDecoration: 'none' }}>galcaraz@bu.edu</a>
-      </Typography>
-    </Container>
-  </Box>
+    <Box sx={{ backgroundColor: '#F0F8FF', py: 0 }}>
+      <CustomAppBar />
+      <Container maxWidth="md">
+        <Typography variant="h3" component="h1" sx={{ textAlign: 'center', mt: 5, mb: 2, color: '#003366', fontWeight: "bold" }}>
+          ALS Awareness Campaign
+        </Typography>
+        <Typography variant="h6" sx={{ textAlign: 'center', my: 2 }}>
+          Raise awareness and support for ALS research and patient care
+        </Typography>
+        <Card elevation={3} sx={{ my: 4, p: 3 }}>
+          <CardContent>
+            <HighlightText variant="h5" component="h2" sx={{ textAlign: 'center', mb: 2 }}>
+              Generate Personalized ALS Awareness Content
+            </HighlightText>
+            <form onSubmit={handleSubmit}>
+              <TextField
+                label="Target Audience"
+                name="targetAudience"
+                value={inputs.targetAudience}
+                onChange={handleChange}
+                sx={{ mb: 2, width: '100%' }}
+              />
+              <TextField
+                label="Prompt"
+                name="prompt"
+                value={inputs.prompt}
+                onChange={handleChange}
+                sx={{ mb: 2, width: '100%' }}
+              />
+              <TextField
+                label="Objective"
+                name="objective"
+                value={inputs.objective}
+                onChange={handleChange}
+                multiline
+                rows={4}
+                sx={{ mb: 2, width: '100%' }}
+              />
+              <CustomButton type="submit" variant="contained" sx={{ display: 'block', mx: 'auto', mb: 5 }}>
+                Generate Content
+              </CustomButton>
+            </form>
+            {generatedContent && (
+              <Typography variant="body1" sx={{ textAlign: 'center', mt: 4 }}>
+                {generatedContent}
+              </Typography>
+            )}
+          </CardContent>
+        </Card>
+        {/* ... other components ... */}
+      </Container>
+    </Box>
   );
 }
-
