@@ -16,7 +16,7 @@ const HighlightText = styled(Typography)({
   fontWeight: 'bold',
 });
 
-export default function ALSAwarenessApp() {
+export default function App() {
   const [inputs, setInputs] = useState({
     targetAudience: '',
     prompt: '',
