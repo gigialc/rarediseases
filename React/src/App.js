@@ -3,7 +3,8 @@ import { Box, Container, Typography, Card, CardContent, TextField, Button } from
 import { styled } from '@mui/material/styles';
 import CustomAppBar from './appbar';
 import db from './firebase-config'; 
-import { Openai } from '/Users/joseramos/Documents/GitHub/rarediseases/React/src/scripts/testOpen.mjs';// Assuming you have firebase-config set up
+import openai from 'openai';
+import { Openai } from './scripts/testOpen.mjs';
 
 const CustomButton = styled(Button)({
   backgroundColor: '#4DB5FF',

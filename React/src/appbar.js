@@ -27,10 +27,6 @@ const CustomAppBar = () => {
         <Button component={Link} to="/data" sx={{ my: 1, mx: isMobile ? 0.5 : 1.5, fontSize: isMobile ? 12 : 15, color: "black", textTransform: 'none' }}>
           Data Sources
         </Button>
-        <Button component={Link} to="/demo" sx={{ my: 1, mx: isMobile ? 0.5 : 1.5, fontSize: isMobile ? 12 : 15, color: "black", textTransform: 'none' }}>
-          Try the API
-        </Button>
-        
         {/* In-page navigation button for "Contact Us" */}
         <Button component={Link} to="/" onClick={() => scrollToSection('contact-section')} sx={{ my: 1, mx: isMobile ? 0.5 : 1.5, fontSize: isMobile ? 12 : 15, color: "black", textTransform: 'none' }}>
             Contact Us

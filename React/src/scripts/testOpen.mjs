@@ -44,7 +44,7 @@
 
 import OpenAI from "openai";
 
-const openai = new OpenAI({ apiKey:'', dangerouslyAllowBrowser: true});
+const openai = new OpenAI({ apiKey:'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', dangerouslyAllowBrowser: true});
 
 export async function Openai([targetAudience, ppt, objective]) {
   const completion = await openai.chat.completions.create({
