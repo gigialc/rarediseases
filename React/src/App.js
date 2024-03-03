@@ -35,8 +35,9 @@ function App() {
     event.preventDefault();
     // Here you would call your content generation API
     // This is a placeholder for the logic you would use to generate content
-    const content = await Openai(inputs.targetAudience, inputs.prompt, inputs.objective);
-    setGeneratedContent(content);
+    const content = await Openai([inputs.targetAudience, inputs.prompt, inputs.objective]);
+    setGeneratedContent(content.message.content);
+    console.log('c0ntent', content)
   }
 
   return (
@@ -81,7 +82,7 @@ function App() {
               <CustomButton type="submit" variant="contained" sx={{ display: 'block', mx: 'auto', mb: 5 }}>
                 Generate Content
               </CustomButton>
-            </form>
+           </form>
             {generatedContent && (
               <Typography variant="body1" sx={{ textAlign: 'center', mt: 4 }}>
                 {generatedContent}

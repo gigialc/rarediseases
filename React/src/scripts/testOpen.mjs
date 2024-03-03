@@ -54,11 +54,13 @@ export async function Openai([targetAudience, ppt, objective]) {
         {"role": "user", "content": `Create content for an ALS Awareness Campaign to Raise awareness and support for ALS research and patient care for the target audience ${targetAudience} with the objective ${objective} and the prompt ${ppt}`}],
     model: "gpt-3.5-turbo",
   });
+  console.log('here')
+  return completion.choices[0]
 
   console.log(completion.choices[0]);
 }
 // main();
 
-Openai(["Kids","create a kindergarden awareness campaign", "have kids learn about ALS"])
-  .then(summary => console.log(summary))
-  .catch(error => console.error(error));
+// Openai(["Kids","create a kindergarden awareness campaign", "have kids learn about ALS"])
+//   .then(summary => console.log(summary))
+//   .catch(error => console.error(error));
