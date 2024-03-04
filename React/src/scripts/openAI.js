@@ -2,8 +2,8 @@
 async function OpenAI(articleContent) {
     const OPENAI_URL = 'https://api.openai.com/v1/completions';
     const prompt = `Summarize this article: ${articleContent}`;
-    const apiKey = process.env.REACT_APP_OPEN_AI_KEY;
-  
+    const apiKey = process.env.OPENAI_API_KEY;
+
     try {
       const response = await fetch(OPENAI_URL, {
         method: 'POST',

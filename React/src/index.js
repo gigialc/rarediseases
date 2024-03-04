@@ -11,7 +11,6 @@ import {
 } from "react-router-dom";
 import App from './App';
 import ErrorPage from './error-page';
-import Demo from './demo';
 import Data from './data';
 
 
@@ -20,10 +19,6 @@ const router = createBrowserRouter([
     path: "/",
     element:  <App />,
     errorElement: <ErrorPage />,
-  },
-  {
-    path: "/demo",
-    element: <Demo />,
   },
   {
     path: "/data",

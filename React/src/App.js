@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Box, Container, Typography, Card, CardContent, TextField, Button } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import CustomAppBar from './appbar';
-import db from './firebase-config'; 
-import openai from 'openai';
 import { Openai } from './scripts/testOpen.mjs';
 
 const CustomButton = styled(Button)({
@@ -34,8 +32,6 @@ function App() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    // Here you would call your content generation API
-    // This is a placeholder for the logic you would use to generate content
     const content = await Openai([inputs.targetAudience, inputs.prompt, inputs.objective]);
     setGeneratedContent(content.message.content);
     console.log('c0ntent', content)
